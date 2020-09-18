@@ -13,9 +13,8 @@ const app = express();
 connectToDB();
 // SET CORS OPTIONS FOR HTTP REQUEST
 // process.env.CORS_ORIGIN || "http://localhost:3000"
-const origin = process.env.CORS_ORIGIN || "http://localhost:3000";
 const corsOptions = {
-  origin: origin,
+  origin: process.env.CORS_ORIGIN,
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
