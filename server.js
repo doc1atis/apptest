@@ -34,4 +34,5 @@ app.get("/*", (req, res) => {
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, function () {
   console.log(`listening on port: ${PORT}`);
+  console.log(process.env.CORS_ORIGIN);
 });
