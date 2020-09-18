@@ -12,8 +12,9 @@ const app = express();
 // connect to db
 connectToDB();
 // SET CORS OPTIONS FOR HTTP REQUEST
+process.env.CORS_ORIGIN || "http://localhost:3000";
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+  origin: "https://olgymiom.com",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
