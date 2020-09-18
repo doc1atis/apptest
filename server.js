@@ -13,8 +13,15 @@ const app = express();
 connectToDB();
 // SET CORS OPTIONS FOR HTTP REQUEST
 // process.env.CORS_ORIGIN || "http://localhost:3000"
+const whitelist = ["https://olgymiom.com", "http://localhost:3000"];
 const corsOptions = {
-  origin: "https://olgymiom.com",
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
