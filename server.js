@@ -6,7 +6,7 @@ const path = require("path");
 const cors = require("cors");
 const connectToDB = require("./DB/connectTodb");
 // ----------------------IMPORT ALL APP ROUTERS---------------------------
-const productsRouter = require("./routes/productsRouter");
+const petsRouter = require("./routes/petsRouter");
 // const usersRouter = require("./routes/usersRouter");
 const app = express();
 // connect to db
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true })); // to get req.body if it is in 
 app.use(express.json()); // to get access to req.body if it is in JSON format
 app.use(express.static(path.join(__dirname, "build")));
 // -----------------------USE ALL ROUTERS---------------
-app.use("/api/products", productsRouter);
+app.use("/api/pets", petsRouter);
 // app.use("/api/users", usersRouter);
 // ---------------------SERVE STATIC FILE ROUTES--------------------------------
 app.get("/", (req, res) => {
