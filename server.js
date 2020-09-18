@@ -13,15 +13,9 @@ const app = express();
 connectToDB();
 // SET CORS OPTIONS FOR HTTP REQUEST
 // process.env.CORS_ORIGIN || "http://localhost:3000"
-const whitelist = ["https://olgymiom.com", "http://localhost:3000"];
+const origin = process.env.CORS_ORIGIN || "http://localhost:3000";
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: origin,
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -42,5 +36,4 @@ app.get("/*", (req, res) => {
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, function () {
   console.log(`listening on port: ${PORT}`);
-  console.log(process.env.CORS_ORIGIN);
 });
