@@ -1,7 +1,7 @@
-const express = require("express");
-const path = require("path");
 // MAKE ENV_VARIABLE ACCESSIBLE
 require("dotenv").config();
+const express = require("express");
+const path = require("path");
 // IMPORT CORS TO ALLOW HTTP REQUEST
 const cors = require("cors");
 const connectToDB = require("./DB/connectTodb");
