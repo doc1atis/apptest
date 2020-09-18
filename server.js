@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 // MAKE ENV_VARIABLE ACCESSIBLE
 require("dotenv").config();
 // IMPORT CORS TO ALLOW HTTP REQUEST
@@ -19,9 +20,17 @@ app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true })); // to get req.body if it is in a FORM
 app.use(express.json()); // to get access to req.body if it is in JSON format
+app.use(express.static(path.join(__dirname, "build")));
 // -----------------------USE ALL ROUTERS---------------
 app.use("/api/products", productsRouter);
 // app.use("/api/users", usersRouter);
+// ---------------------SERVE STATIC FILE ROUTES--------------------------------
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, function () {
   console.log(`listening on port: ${PORT}`);
